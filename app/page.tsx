@@ -50,6 +50,7 @@ const roleCopy = {
 
 export default function Home() {
   const [role, setRole] = useState<Role>('diner');
+  const [name, setName] = useState('小明');
 
   const currentCopy = useMemo(() => roleCopy[role], [role]);
 
@@ -74,7 +75,7 @@ export default function Home() {
           <button
             type="button"
             onClick={() => setRole('chef')}
-            className={`flex items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold transition ${
+            className={`flex items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold transition-all duration-200 ${
               role === 'chef' ? 'bg-walnut text-cream shadow' : 'text-walnut/70'
             }`}
           >
@@ -83,7 +84,7 @@ export default function Home() {
           <button
             type="button"
             onClick={() => setRole('diner')}
-            className={`flex items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold transition ${
+            className={`flex items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold transition-all duration-200 ${
               role === 'diner' ? 'bg-walnut text-cream shadow' : 'text-walnut/70'
             }`}
           >
@@ -92,9 +93,20 @@ export default function Home() {
         </div>
 
         <div className="mt-4 rounded-2xl bg-[#fffdf7] p-4">
-          <h2 className="text-lg font-bold">{currentCopy.title}</h2>
+          <label htmlFor="name" className="text-xs font-semibold uppercase tracking-wide text-walnut/60">
+            你的称呼
+          </label>
+          <input
+            id="name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder="输入名字，如：爸爸"
+            className="mt-2 w-full rounded-xl border border-[#e8dfcf] bg-white px-3 py-3 text-sm outline-none transition focus:border-herb/60 focus:ring-2 focus:ring-herb/20"
+          />
+
+          <h2 className="mt-4 text-lg font-bold">{currentCopy.title}</h2>
           <p className="mt-1 text-sm text-walnut/75">{currentCopy.subtitle}</p>
-          <p className="mt-3 text-xs text-walnut/60">{currentCopy.hint}</p>
+          <p className="mt-3 text-xs text-walnut/60">当前身份：{name || '未命名'} · {currentCopy.hint}</p>
           <button
             type="button"
             className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-herb px-4 py-3 text-sm font-semibold text-white transition hover:brightness-110"
