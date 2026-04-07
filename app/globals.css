@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-cream text-walnut antialiased;
+  background-image: radial-gradient(circle at top, #fff6e8, #f8f3ea 58%);
+  min-height: 100vh;
+}
